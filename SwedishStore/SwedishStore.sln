@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwedishStore", "SwedishStore\SwedishStore.csproj", "{12D2F69F-743E-4251-A461-F67C2C9BE1F8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12D2F69F-743E-4251-A461-F67C2C9BE1F8}.Debug|x86.ActiveCfg = Debug|x86
+		{12D2F69F-743E-4251-A461-F67C2C9BE1F8}.Debug|x86.Build.0 = Debug|x86
+		{12D2F69F-743E-4251-A461-F67C2C9BE1F8}.Release|x86.ActiveCfg = Release|x86
+		{12D2F69F-743E-4251-A461-F67C2C9BE1F8}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
