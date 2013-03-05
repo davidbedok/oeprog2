@@ -7,7 +7,7 @@ using SwedishStore.Common;
 
 namespace SwedishStore.Furniture
 {
-    public class Wardrobe : AbstractFurniture
+    public class Wardrobe : AbstractFurniture, BuiltInLampCapable
     {
 
         private readonly int numberOfShelves;
@@ -60,6 +60,47 @@ namespace SwedishStore.Furniture
         protected override String sellDetails()
         {
             return "Frame is obtained from warehouse by customer, but the " + this.typeOfDoor + " door is obtained by fellow worker of store.";
+        }
+
+        public override bool Equals(Object othat)
+        {
+            // OR override == operator
+            if (this == othat)
+            {
+                return true;
+            }
+
+            if (othat == null)
+            {
+                return false;
+            }
+            if (othat is Bed)
+            {
+                Bed that = othat as Bed;
+                return this.Equals(that);
+            }
+            return false;
+        }
+
+        public bool Equals(Wardrobe that)
+        {
+            if ((object)that == null)
+            {
+                return false;
+            }
+            if (base.Equals(that))
+            {
+                if (that.numberOfShelves == this.numberOfShelves && that.typeOfDoor == this.typeOfDoor && that.mirror == this.mirror && that.builtInLamp == this.builtInLamp)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode() + numberOfShelves;
         }
 
     }

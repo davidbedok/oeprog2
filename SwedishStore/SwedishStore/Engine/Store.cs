@@ -71,7 +71,7 @@ namespace SwedishStore.Engine
             if (furniture != null)
             {
                 this.addFurniture(furniture, count);
-                ret = count + " piece(s) " + furniture.printInfo() + " was arrived.";
+                ret = count + " piece(s) " + furniture.getFancyName() + " was arrived.";
             }
             return ret;
         }
@@ -90,6 +90,19 @@ namespace SwedishStore.Engine
                 }
             }
             return ret;
+        }
+
+        public List<AbstractFurniture> listAllCompactSizeCapableFurniture()
+        {
+            List<AbstractFurniture> list = new List<AbstractFurniture>();
+            foreach (AbstractFurniture furniture in this.items.Keys)
+            {
+                if (furniture is CompactSizeCapable)
+                {
+                    list.Add(furniture);
+                }
+            }
+            return list;
         }
 
 

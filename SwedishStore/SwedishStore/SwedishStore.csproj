@@ -44,6 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AbstractFurniture.cs" />
+    <Compile Include="Api\AbstractMarketGood.cs" />
+    <Compile Include="Api\BuiltInLampCapable.cs" />
+    <Compile Include="Api\CompactSizeCapable.cs" />
+    <Compile Include="Api\Salable.cs" />
     <Compile Include="Common\CsvFurnitureType.cs" />
     <Compile Include="Common\DoorType.cs" />
     <Compile Include="Common\LampType.cs" />
@@ -53,9 +57,12 @@
     <Compile Include="Common\Size.cs" />
     <Compile Include="Common\SupplementaryType.cs" />
     <Compile Include="Engine\Store.cs" />
+    <Compile Include="Engine\StoreUpgrade.cs" />
     <Compile Include="Furniture\Bed.cs" />
     <Compile Include="Furniture\Table.cs" />
     <Compile Include="Furniture\Wardrobe.cs" />
+    <Compile Include="Market\DinnerwareSet.cs" />
+    <Compile Include="Market\Lamp.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

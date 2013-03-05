@@ -8,6 +8,8 @@ using System.Globalization;
 using SwedishStore.Furniture;
 using SwedishStore.Api;
 using SwedishStore.Engine;
+using System.Diagnostics;
+using SwedishStore.Market;
 
 namespace SwedishStore
 {
@@ -66,23 +68,162 @@ namespace SwedishStore
             store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 2);
 
             Console.WriteLine(store);
-
             Console.WriteLine(store.addFurniture("Foxtrot", 1) + "\n");
+            Console.WriteLine(store);
+            Console.WriteLine(store.sell("Tango", 2) + "\n");
+            Console.WriteLine(store);
+        }
+
+        private static void testEqualsSize()
+        {
+            Console.WriteLine("\n# testEqualsSize()");
+            Size one = new Size(100, 30, 60);
+            Size two = new Size(100, 30, 60);
+            Size three = new Size(100, 30, 60);
+
+            Size four = new Size(101, 30, 60);
+            Size five = new Size(100, 31, 60);
+
+            Debug.Assert(!one.Equals(null), "error (implementation bug)");
+            Debug.Assert(!one.Equals(new Random()), "error (implementation bug)");
+
+            Debug.Assert(one.Equals(two), "error (implementation bug)");
+            Debug.Assert(two.Equals(one), "error (implementation bug)");
+            Debug.Assert(two.Equals(three), "error (implementation bug)");
+            Debug.Assert(one.Equals(three), "error (implementation bug)");
+
+            Debug.Assert(one.Equals(four) == four.Equals(one), "error (implementation bug)");
+
+            Debug.Assert(!one.Equals(four), "error (implementation bug)");
+            Debug.Assert(!one.Equals(five), "error (implementation bug)");
+            Debug.Assert(!two.Equals(four), "error (implementation bug)");
+            Debug.Assert(!three.Equals(five), "error (implementation bug)");
+
+            Debug.Assert(one == two, "error (implementation bug)");
+            Debug.Assert(two == one, "error (implementation bug)");
+            Debug.Assert(one != four, "error (implementation bug)");
+            Debug.Assert(four != one, "error (implementation bug)");
+        }
+
+        private static void testEqualsBed()
+        {
+            Console.WriteLine("\n# testEqualsBed()");
+            // one, two and five are equal
+            // three differs one base field
+            // four differs one not-base field
+            Bed one = new Bed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false);
+            Bed two = new Bed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false);
+
+            Bed three = new Bed("Foxtrot", Room.LivingRoom, Material.CherryTree, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false);
+            Bed four = new Bed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Comfortable, false, true, false);
+
+            Bed five = new Bed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false);
+
+            Debug.Assert(!one.Equals(null), "error (implementation bug)");
+            Debug.Assert(!one.Equals(new Random()), "error (implementation bug)");
+
+            Debug.Assert(one.Equals(two), "error (implementation bug)");
+            Debug.Assert(two.Equals(one), "error (implementation bug)");
+            Debug.Assert(two.Equals(five), "error (implementation bug)");
+            Debug.Assert(one.Equals(five), "error (implementation bug)");
+
+            Debug.Assert(one.Equals(three) == three.Equals(one), "error (implementation bug)");
+
+            Debug.Assert(!one.Equals(three), "error (implementation bug)");
+            Debug.Assert(!one.Equals(four), "error (implementation bug)");
+            Debug.Assert(!three.Equals(one), "error (implementation bug)");
+            Debug.Assert(!two.Equals(four), "error (implementation bug)");
+        }
+
+        private static void testEqualsViaDictionary()
+        {
+            Console.WriteLine("\n# testEqualsViaDictionary()");
+            Dictionary<Size, Int32> items = new Dictionary<Size, Int32>();
+            items.Add(new Size(100, 30, 60), 2);
+            Console.WriteLine(Program.printDictionary(items));
+            // items.Add(new Size(100, 30, 60), 1); // ArgumentException if overload Equals 
+            // Console.WriteLine(Program.printDictionary(items));
+        }
+
+        private static String printDictionary(Dictionary<Size, Int32> items )
+        {
+            StringBuilder info = new StringBuilder(100);
+            foreach (Size size in items.Keys)
+            {
+                Int32 count = items[size];
+                info.Append(count).Append(" - ").AppendLine(size.ToString());
+            }
+            return info.ToString();
+        }
+
+        private static void testStoreWithEquals()
+        {
+            Console.WriteLine("\n# testStoreWithEquals()");
+            Store store = new Store();
+            store.addBed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false, 4);
+            store.addTable("Tango", Room.Kitchen, Material.Oak, new Size(80, 90, 100), 120, 4, false, true, 6);
+            store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 2);
 
             Console.WriteLine(store);
 
-            Console.WriteLine(store.sell("Tango", 2) + "\n");
+            store.addBed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false, 1);
+
+            // With Equals: 5 Foxtrot, 6 Tango, 2 John
+            // Without Equals: 4 Foxtrot, 6 Tango, 2 John, 1 Foxtrot !!!
 
             Console.WriteLine(store);
         }
 
+        private static void testStoreListCompactSize()
+        {
+            Console.WriteLine("\n# testStore()");
+            Store store = new Store();
+            store.addBed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false, 4);
+            store.addTable("Tango", Room.Kitchen, Material.Oak, new Size(80, 90, 100), 120, 4, false, true, 6);
+            store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 2);
+
+            Console.WriteLine(store);
+
+            Console.WriteLine("List CompactSizeCapable furniture");
+            List<AbstractFurniture> elements = store.listAllCompactSizeCapableFurniture();
+            foreach (AbstractFurniture furniture in elements)
+            {
+                Console.WriteLine(furniture);
+            }
+        }
+
+        private static void testStoreUpgrade()
+        {
+            Console.WriteLine("\n# testStoreUpgrade()");
+            StoreUpgrade store = new StoreUpgrade();
+            store.addItem(new Bed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false), 4);
+            store.addItem(new Table("Tango", Room.Kitchen, Material.Oak, new Size(80, 90, 100), 120, 4, false, true), 6);
+            store.addItem(new Wardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false), 2);
+            store.addItem(new Lamp("Lincoln", SupplementaryType.DeskTool, 34, LampType.TableLamp, 5), 12);
+            store.addItem(new DinnerwareSet("Ocean", SupplementaryType.KitchenTool, 76, false), 9);
+            Console.WriteLine(store);
+
+            Console.WriteLine(store.sell("John", 1));
+            Console.WriteLine(store.sell("Lincoln", 3));
+
+            Console.WriteLine("\n"+store);
+        }
+
         private static void Main(string[] args)
         {
+            Console.SetWindowSize(150, 50);
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            
             Program.testSize();
             Program.testFurniture();
             Program.testAbstractFurniture();
             Program.testStore();
+            Program.testEqualsSize();
+            Program.testEqualsBed();
+            Program.testEqualsViaDictionary();
+            Program.testStoreWithEquals();
+            Program.testStoreListCompactSize();
+            Program.testStoreUpgrade();
         }
     }
 }
