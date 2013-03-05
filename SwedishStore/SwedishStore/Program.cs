@@ -8,11 +8,39 @@ using System.Globalization;
 using SwedishStore.Furniture;
 using SwedishStore.Api;
 using SwedishStore.Engine;
+using SwedishStore.Demo;
 
 namespace SwedishStore
 {
     public class Program
     {
+
+        private static void testDemoAnimal()
+        {
+            Console.WriteLine("# testDemoAnimal()");
+            Animal animal = new Animal("Bubosvocsok");
+            Console.WriteLine(animal);
+            Console.WriteLine(animal.eat());
+        }
+
+        private static void testCat()
+        {
+            Console.WriteLine("# testCat()");
+            Cat cat = new Cat("Cirmos", "Cirmi");
+            cat.NumberOfMilk = 3;
+            Console.WriteLine(cat);
+            Console.WriteLine(cat.eat());
+        }
+
+        private static void testCatAlter()
+        {
+            Console.WriteLine("# testCatAlter()");
+            Animal animal = new Cat("Cirmos", "Cirmi");
+            Console.WriteLine(animal);
+            Console.WriteLine(animal.eat());
+        }
+
+
         private static void testSize()
         {
             Console.WriteLine("# testSize()");
@@ -66,23 +94,24 @@ namespace SwedishStore
             store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 2);
 
             Console.WriteLine(store);
-
             Console.WriteLine(store.addFurniture("Foxtrot", 1) + "\n");
-
             Console.WriteLine(store);
-
             Console.WriteLine(store.sell("Tango", 2) + "\n");
-
             Console.WriteLine(store);
         }
 
         private static void Main(string[] args)
         {
+            Program.testDemoAnimal();
+            Program.testCat();
+            Program.testCatAlter();
+           
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
             Program.testSize();
             Program.testFurniture();
             Program.testAbstractFurniture();
             Program.testStore();
+             
         }
     }
 }

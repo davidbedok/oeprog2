@@ -52,6 +52,8 @@
     <Compile Include="Common\Room.cs" />
     <Compile Include="Common\Size.cs" />
     <Compile Include="Common\SupplementaryType.cs" />
+    <Compile Include="Demo\Animal.cs" />
+    <Compile Include="Demo\Cat.cs" />
     <Compile Include="Engine\Store.cs" />
     <Compile Include="Furniture\Bed.cs" />
     <Compile Include="Furniture\Table.cs" />

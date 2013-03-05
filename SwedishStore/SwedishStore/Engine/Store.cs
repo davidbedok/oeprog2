@@ -92,7 +92,6 @@ namespace SwedishStore.Engine
             return ret;
         }
 
-
         public override String ToString()
         {
             StringBuilder info = new StringBuilder(100);
