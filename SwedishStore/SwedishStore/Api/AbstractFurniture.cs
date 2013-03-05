@@ -6,7 +6,7 @@ using SwedishStore.Common;
 
 namespace SwedishStore.Api
 {
-    public abstract class AbstractFurniture
+    public abstract class AbstractFurniture : Object, Salable
     {
 
         private const String CURRENCY = "EUR";
@@ -47,6 +47,11 @@ namespace SwedishStore.Api
             return this.fancyName;
         }
 
+        public double getPrice()
+        {
+            return this.price;
+        }
+
         public String sell(int pieces)
         {
             return pieces + " piece(s) " + this.printInfo() + " was sold. " + this.sellDetails();
@@ -70,6 +75,43 @@ namespace SwedishStore.Api
         public String printInfo()
         {
             return this.printFancyName() + " " + this.printType();
+        }
+        
+        public override bool Equals(Object othat)
+        {
+            if (othat == null)
+            {
+                return false;
+            }
+            if (othat is AbstractFurniture)
+            {
+                AbstractFurniture that = othat as AbstractFurniture;
+                return this.Equals(that);
+            }
+            return false;
+        }
+
+        public bool Equals(AbstractFurniture that)
+        {
+            if ((object)that == null)
+            {
+                return false;
+            }
+            bool a = that.fancyName.Equals(this.fancyName);
+            bool b = that.room == this.room;
+            bool c = that.material == this.material;
+            bool d = that.size.Equals(this.size);
+            bool e = that.price == this.price;
+            if (that.fancyName.Equals(this.fancyName) && that.room == this.room && that.material == this.material && that.size.Equals(this.size) && that.price == this.price)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return 7 * fancyName.GetHashCode();
         }
 
     }

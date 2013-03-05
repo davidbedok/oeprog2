@@ -7,7 +7,7 @@ using SwedishStore.Common;
 
 namespace SwedishStore.Furniture
 {
-    public class Table : AbstractFurniture
+    public class Table : AbstractFurniture, CompactSizeCapable
     {
 
         private readonly int numberOfChairs;
@@ -54,6 +54,47 @@ namespace SwedishStore.Furniture
         protected override String sellDetails()
         {
             return "The table and the attached " + this.numberOfChairs + " chair(s) are obtained from warehouse by customer.";
+        }
+
+        public override bool Equals(Object othat)
+        {
+            // OR override == operator
+            if (this == othat)
+            {
+                return true;
+            }
+
+            if (othat == null)
+            {
+                return false;
+            }
+            if (othat is Bed)
+            {
+                Bed that = othat as Bed;
+                return this.Equals(that);
+            }
+            return false;
+        }
+
+        public bool Equals(Table that)
+        {
+            if ((object)that == null)
+            {
+                return false;
+            }
+            if (base.Equals(that))
+            {
+                if (that.numberOfChairs == this.numberOfChairs && that.scratchResistant == this.scratchResistant && that.compactSize == this.compactSize)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode() + numberOfChairs;
         }
 
     }
