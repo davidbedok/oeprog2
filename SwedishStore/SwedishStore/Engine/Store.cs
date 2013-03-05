@@ -10,6 +10,8 @@ namespace SwedishStore.Engine
 {
     public class Store
     {
+        public const String CURRENCY = "EUR";
+
         private readonly Dictionary<AbstractFurniture, Int32> items;
 
         public Store()

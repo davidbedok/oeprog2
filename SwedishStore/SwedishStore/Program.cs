@@ -10,6 +10,7 @@ using SwedishStore.Api;
 using SwedishStore.Engine;
 using System.Diagnostics;
 using SwedishStore.Market;
+using SwedishStore.Demo;
 
 namespace SwedishStore
 {
@@ -235,20 +236,22 @@ namespace SwedishStore
 
         private static void Main(string[] args)
         {
-            Program.testDemoAnimal();
             Console.SetWindowSize(150, 50);
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
+            
+            Program.testDemoAnimal();
             Program.testCat();
             Program.testCatAlter();
            
-            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            
             Program.testSize();
             Program.testFurniture();
             Program.testAbstractFurniture();
             Program.testStore();
+
             Program.testEqualsSize();
             Program.testEqualsBed();
             Program.testEqualsViaDictionary();
+            
             Program.testStoreWithEquals();
             Program.testStoreListCompactSize();
             Program.testStoreUpgrade();

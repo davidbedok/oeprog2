@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SwedishStore.Api.AbstractFurniture">
+    <Position X="5.5" Y="0.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>QAADAAAAAIBAQQAEgIAAABAQAgAAAIAAAAAQAABACQA=</HashCode>
+      <FileName>Api\AbstractFurniture.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SwedishStore.Furniture.Bed">
+    <Position X="3.75" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAABIAAAgAEgAAAABAAAAAAIYAAAAEAAAAAAQA=</HashCode>
+      <FileName>Furniture\Bed.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SwedishStore.Furniture.Table">
+    <Position X="5.5" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAgAEgIAAAAAAAAAAIIAAAAAQAAIAARA=</HashCode>
+      <FileName>Furniture\Table.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SwedishStore.Furniture.Wardrobe">
+    <Position X="7.25" Y="3.5" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>ASAAAABAAIAAAAAEgACAABQCAAAAAYAAAAAAAAAAAQA=</HashCode>
+      <FileName>Furniture\Wardrobe.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

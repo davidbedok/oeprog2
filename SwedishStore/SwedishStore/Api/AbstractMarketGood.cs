@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SwedishStore.Common;
+using SwedishStore.Engine;
 
 namespace SwedishStore.Api
 {
@@ -41,7 +42,7 @@ namespace SwedishStore.Api
 
         public String sell(int pieces)
         {
-            return pieces + " piece(s) " + this.getFancyName() + " was sold.";
+            return pieces + " piece(s) " + this.getFancyName() + " was sold (total: " + String.Format("{0,8:0.00}", pieces * this.price) + " " + Store.CURRENCY + ").";
         }
 
 

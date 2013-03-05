@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SwedishStore.Common;
+using SwedishStore.Engine;
 
 namespace SwedishStore.Api
 {
     public abstract class AbstractFurniture : Object, Salable
     {
-
-        private const String CURRENCY = "EUR";
 
         protected readonly String fancyName;
         protected readonly Room room;
@@ -54,7 +53,7 @@ namespace SwedishStore.Api
 
         public String sell(int pieces)
         {
-            return pieces + " piece(s) " + this.printInfo() + " was sold. " + this.sellDetails();
+            return pieces + " piece(s) " + this.printInfo() + " was sold (total: " + String.Format("{0,8:0.00}", pieces * this.price) + " " + Store.CURRENCY + "). " + this.sellDetails();
         }
 
         protected abstract String printType();
@@ -64,7 +63,7 @@ namespace SwedishStore.Api
         public override String ToString()
         {
             return String.Format("{0,-9}", this.printType()) + this.printFancyName() + " Room-" + this.room + " Material-" + this.material + " " + this.size + " "
-                    + String.Format("{0,8:0.00}", this.price) + " " + AbstractFurniture.CURRENCY;
+                    + String.Format("{0,8:0.00}", this.price) + " " + Store.CURRENCY;
         }
 
         private String printFancyName()
