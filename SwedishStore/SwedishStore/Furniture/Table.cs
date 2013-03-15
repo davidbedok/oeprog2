@@ -68,9 +68,9 @@ namespace SwedishStore.Furniture
             {
                 return false;
             }
-            if (othat is Bed)
+            if (othat is Table)
             {
-                Bed that = othat as Bed;
+                Table that = othat as Table;
                 return this.Equals(that);
             }
             return false;

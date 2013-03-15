@@ -20,7 +20,7 @@ namespace SwedishStore.Demo
             this.name = name;
         }
 
-        public String eat()
+        public virtual String eat()
         {
             return this + " is eating.";
         }

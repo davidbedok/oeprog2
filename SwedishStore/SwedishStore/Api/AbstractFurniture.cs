@@ -96,11 +96,6 @@ namespace SwedishStore.Api
             {
                 return false;
             }
-            bool a = that.fancyName.Equals(this.fancyName);
-            bool b = that.room == this.room;
-            bool c = that.material == this.material;
-            bool d = that.size.Equals(this.size);
-            bool e = that.price == this.price;
             if (that.fancyName.Equals(this.fancyName) && that.room == this.room && that.material == this.material && that.size.Equals(this.size) && that.price == this.price)
             {
                 return true;

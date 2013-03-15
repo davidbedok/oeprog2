@@ -24,7 +24,7 @@ namespace SwedishStore.Demo
             this.numberOfMilk = 1;
         }
 
-        public String eat()
+        public override String eat()
         {
             return this + " is eating " + this.numberOfMilk + " milk(s)";
         }

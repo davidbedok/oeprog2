@@ -42,7 +42,6 @@ namespace SwedishStore
             Console.WriteLine(animal.eat());
         }
 
-
         private static void testSize()
         {
             Console.WriteLine("# testSize()");
@@ -91,7 +90,8 @@ namespace SwedishStore
         {
             Console.WriteLine("\n# testStore()");
             Store store = new Store();
-            store.addBed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false, 4);
+            store.addFurniture(new Bed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false), 4);
+            // store.addBed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false, 4);
             store.addTable("Tango", Room.Kitchen, Material.Oak, new Size(80, 90, 100), 120, 4, false, true, 6);
             store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 2);
 
@@ -193,9 +193,11 @@ namespace SwedishStore
             store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 2);
             Console.WriteLine(store);
             store.addBed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false, 1);
-
-            // With Equals: 5 Foxtrot, 6 Tango, 2 John
-            // Without Equals: 4 Foxtrot, 6 Tango, 2 John, 1 Foxtrot !!!
+            store.addTable("Tango", Room.Kitchen, Material.Oak, new Size(80, 90, 100), 120, 4, false, true, 1);
+            store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 1);
+            
+            // With Equals: 5 Foxtrot, 7 Tango, 3 John
+            // Without Equals: 4 Foxtrot, 6 Tango, 2 John, 1 Foxtrot, 1 Tango, 1 John !!!
 
             Console.WriteLine(store);
         }
@@ -205,7 +207,9 @@ namespace SwedishStore
             Console.WriteLine("\n# testStore()");
             Store store = new Store();
             store.addBed("Foxtrot", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, true, false, 4);
+            store.addBed("BedNoCompactSize", Room.LivingRoom, Material.Pine, new Size(100, 45, 210), 230, Mattress.Healthy, false, false, false, 4);
             store.addTable("Tango", Room.Kitchen, Material.Oak, new Size(80, 90, 100), 120, 4, false, true, 6);
+            store.addTable("TableNoCompactSize", Room.Kitchen, Material.Oak, new Size(80, 90, 100), 120, 4, false, false, 6);
             store.addWardrobe("John", Room.Bedroom, Material.CherryTree, new Size(50, 160, 90), 180, 3, DoorType.Sliding, true, false, 2);
 
             Console.WriteLine(store);
@@ -216,6 +220,7 @@ namespace SwedishStore
             {
                 Console.WriteLine(furniture);
             }
+            // 2 item: Foxtrot and Tango --> Bed or Table, and value of CompactSize is True
         }
         private static void testStoreUpgrade()
         {
@@ -236,13 +241,15 @@ namespace SwedishStore
 
         private static void Main(string[] args)
         {
-            Console.SetWindowSize(150, 50);
+            Console.ForegroundColor = ConsoleColor.White;
+            // Console.SetWindowSize(150, 50);
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            
-            Program.testDemoAnimal();
+
+            Program.testDemoAnimal();           
             Program.testCat();
+          
             Program.testCatAlter();
-           
+          
             Program.testSize();
             Program.testFurniture();
             Program.testAbstractFurniture();

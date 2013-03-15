@@ -19,17 +19,17 @@ namespace SwedishStore.Engine
             this.items = new Dictionary<AbstractFurniture, Int32>();
         }
 
-        private void addFurniture(AbstractFurniture furniture, Int32 count)
+        public void addFurniture(AbstractFurniture furniture, Int32 count)
         {
-            Int32 newCount = count;
-            if (this.items.ContainsKey(furniture))
+            if (!this.items.ContainsKey(furniture))
             {
-                newCount += this.items[furniture];
-                this.items[furniture] = newCount;
+                this.items.Add(furniture, count);
             }
             else
             {
-                this.items.Add(furniture, newCount);
+                Int32 prevCount = this.items[furniture];
+                this.items[furniture] = prevCount + count;
+                // or: this.items[furniture] += prevCount + count;
             }
         }
 
@@ -57,7 +57,7 @@ namespace SwedishStore.Engine
             AbstractFurniture ret = null;
             foreach (AbstractFurniture furniture in this.items.Keys)
             {
-                if (fancyName.Equals(furniture.getFancyName()))
+                if (furniture.getFancyName().Equals(fancyName))
                 {
                     ret = furniture;
                     break;
@@ -94,6 +94,19 @@ namespace SwedishStore.Engine
             return ret;
         }
 
+        public List<AbstractFurniture> search( Room room )
+        {
+            List<AbstractFurniture> list = new List<AbstractFurniture>();
+            foreach (AbstractFurniture furniture in this.items.Keys)
+            {
+                if (furniture.getRoom() == room)
+                {
+                    list.Add(furniture);
+                }
+            }
+            return list;
+        }
+
         public List<AbstractFurniture> listAllCompactSizeCapableFurniture()
         {
             List<AbstractFurniture> list = new List<AbstractFurniture>();
@@ -101,7 +114,11 @@ namespace SwedishStore.Engine
             {
                 if (furniture is CompactSizeCapable)
                 {
-                    list.Add(furniture);
+                    CompactSizeCapable csc = furniture as CompactSizeCapable;
+                    if (csc.isCompactSizeMode())
+                    {
+                        list.Add(furniture);
+                    }
                 }
             }
             return list;
