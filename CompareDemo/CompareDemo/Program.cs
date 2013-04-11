@@ -8,14 +8,24 @@ namespace CompareDemo
     public class Program
     {
 
-        private static void switchItems(IComparable[] data, int aPos, int bPos)
+        private static void testSimplePot(Random rand)
         {
-            IComparable tmp = data[aPos];
-            data[aPos] = data[bPos];
-            data[bPos] = tmp;
+            SimplePot[] simplePots = SimplePot.generatePots(rand, 10);
+            System.Console.WriteLine(SimplePot.printArray(simplePots));
+            Array.Sort(simplePots); // ArgumentException ! 
+            System.Console.WriteLine(SimplePot.printArray(simplePots));
         }
 
-        public static void minimumSelectionSortWithNoGenericCompareTo(IComparable[] data)
+        private static void testPot(Random rand)
+        {
+            Pot[] pots = Pot.generatePots(rand, 10);
+            System.Console.WriteLine(Pot.printArray(pots));
+            Program.minimumSelectionSortWithNoGenericCompareTo(pots);
+            // Array.Sort(pots);
+            System.Console.WriteLine(Pot.printArray(pots));
+        }
+
+        private static void minimumSelectionSortWithNoGenericCompareTo(IComparable[] data)
         {
             if (data.Length > 0)
             {
@@ -38,21 +48,11 @@ namespace CompareDemo
             }
         }
 
-        private static void testSimplePot(Random rand)
+        private static void switchItems(IComparable[] data, int aPos, int bPos)
         {
-            SimplePot[] simplePots = SimplePot.generatePots(rand, 10);
-            System.Console.WriteLine(SimplePot.printArray(simplePots));
-            Array.Sort(simplePots); // ArgumentException ! 
-            System.Console.WriteLine(SimplePot.printArray(simplePots));
-        }
-
-        private static void testPot(Random rand)
-        {
-            Pot[] pots = Pot.generatePots(rand, 10);
-            System.Console.WriteLine(Pot.printArray(pots));
-            Program.minimumSelectionSortWithNoGenericCompareTo(pots);
-            // Array.Sort(pots);
-            System.Console.WriteLine(Pot.printArray(pots));
+            IComparable tmp = data[aPos];
+            data[aPos] = data[bPos];
+            data[bPos] = tmp;
         }
 
         private static void testGenericPot(Random rand){
