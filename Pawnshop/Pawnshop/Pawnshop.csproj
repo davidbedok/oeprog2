@@ -43,15 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DogHelper.cs" />
     <Compile Include="Events\CountOnChangeEvent.cs" />
     <Compile Include="Handlers\CountChangeEventHandler.cs" />
     <Compile Include="Institution\Account.cs" />
     <Compile Include="Institution\Pawnshop.cs" />
     <Compile Include="Institution\PersonAccounts.cs" />
-    <Compile Include="InvalidArgumentException.cs" />
+    <Compile Include="Exceptions\UnknownAccountException.cs" />
     <Compile Include="Wealth\Currency.cs" />
-    <Compile Include="Wealth\InvalidCountException.cs" />
+    <Compile Include="Exceptions\InvalidCountException.cs" />
     <Compile Include="Wealth\Money.cs" />
     <Compile Include="Wealth\Property.cs" />
     <Compile Include="Wealth\Chattel.cs" />

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MoneyAndSecurities.Wealth
+namespace MoneyAndSecurities.Exceptions
 {
     public class InvalidCountException : ApplicationException
     {

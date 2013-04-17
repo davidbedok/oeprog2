@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using MoneyAndSecurities.Exceptions;
 
 namespace MoneyAndSecurities.Wealth
 {
@@ -9,6 +10,11 @@ namespace MoneyAndSecurities.Wealth
     {
         private String name;
         private int marketPrice; // in HUF (simplicity)
+
+        public String Name
+        {
+            get { return this.name; }
+        }
 
         public Chattel(String name, int marketPrice, int count)
             : base(count)

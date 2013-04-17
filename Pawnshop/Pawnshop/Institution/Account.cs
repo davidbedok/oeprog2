@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using MoneyAndSecurities.Wealth;
+using MoneyAndSecurities.Exceptions;
 
 namespace MoneyAndSecurities.Mortgage
 {
@@ -10,16 +11,16 @@ namespace MoneyAndSecurities.Mortgage
     public class Account<T> where T: Property
     {
 
-        private Person proprietor;
+        private String accountNumber;
         private T wealth;
 
-        public Account(Person proprietor, T wealth)
+        public Account(String accountNumber, T wealth)
         {
-            this.proprietor = proprietor;
+            this.accountNumber = accountNumber;
             this.wealth = wealth;
         }
 
-        public int getValue()
+        public int value()
         {
             return wealth.value();
         }
@@ -41,54 +42,27 @@ namespace MoneyAndSecurities.Mortgage
             }
         }
 
-        public bool check( Currency currency ) 
+        public bool check(Object condition)
         {
             bool ret = false;
-            if (wealth is Money)
+            if ( (wealth is Money) && ( condition is Currency ) )
             {
                 Money money = wealth as Money;
+                Currency currency = (Currency)Enum.Parse(typeof(Currency), condition.ToString());
                 ret = money.Currency == currency;
+            }
+            else if ((wealth is Chattel) && (condition is String))
+            {
+                Chattel chattel = wealth as Chattel;
+                String name = condition as String;
+                ret = chattel.Name == name;
             }
             return ret;
         }
 
-        /*
-        public override bool Equals(Object othat)
-        {
-            if (othat == null)
-            {
-                return false;
-            }
-            if (othat is Account<T>)
-            {
-                Account<T> that = othat as Account<T>;
-                return this.Equals(that);
-            }
-            return false;
-        }
-
-        public bool Equals(Account<T> that)
-        {
-            if ((object)that == null)
-            {
-                return false;
-            }
-            if (that.c)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public override int GetHashCode()
-        {
-            return 13 * (int)width;
-        }
-        */
-
         public override string ToString()
         {
-            return proprietor + " - " + wealth;
+            return "AccountNumber: " + accountNumber + " - " + wealth;
         }
 
     }
