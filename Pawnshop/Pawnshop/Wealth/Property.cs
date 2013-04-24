@@ -28,7 +28,7 @@ namespace MoneyAndSecurities.Wealth
 
         public abstract int value();
 
-        public void income( int count )
+        public void income(int count )
         {
             int originalCount = this.count;
             this.count += count;

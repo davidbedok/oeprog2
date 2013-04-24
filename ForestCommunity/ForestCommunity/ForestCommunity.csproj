@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D53DB9BE-3B54-4127-BC04-AAD95D9380EC}</ProjectGuid>
+    <ProjectGuid>{AD0E3D6E-B78D-412B-AC93-DB78C5ED2F52}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MoneyAndSecurities</RootNamespace>
-    <AssemblyName>MoneyAndSecurities</AssemblyName>
+    <RootNamespace>ForestCommunity</RootNamespace>
+    <AssemblyName>ForestCommunity</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
@@ -43,25 +43,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo\NotSpecialNumberException.cs" />
-    <Compile Include="Demo\Placeholder.cs" />
-    <Compile Include="Events\CountOnChangeEvent.cs" />
-    <Compile Include="Handlers\CountChangeEventHandler.cs" />
-    <Compile Include="Institution\Account.cs" />
-    <Compile Include="Institution\Pawnshop.cs" />
-    <Compile Include="Institution\PersonAccounts.cs" />
-    <Compile Include="Exceptions\UnknownAccountException.cs" />
-    <Compile Include="Wealth\Currency.cs" />
-    <Compile Include="Exceptions\InvalidCountException.cs" />
-    <Compile Include="Wealth\Money.cs" />
-    <Compile Include="Wealth\Property.cs" />
-    <Compile Include="Wealth\Chattel.cs" />
-    <Compile Include="Helper\Calculator.cs" />
-    <Compile Include="Institution\Person.cs" />
+    <Compile Include="Animals\AbstractAnimal.cs" />
+    <Compile Include="Animals\Bear.cs" />
+    <Compile Include="Animals\GroundSquirrel.cs" />
+    <Compile Include="Animals\Mole.cs" />
+    <Compile Include="Animals\Rabbit.cs" />
+    <Compile Include="Api\AnimalStatus.cs" />
+    <Compile Include="Api\BedStatus.cs" />
+    <Compile Include="Api\CanDig.cs" />
+    <Compile Include="Api\CanIrrigate.cs" />
+    <Compile Include="Api\CanPlant.cs" />
+    <Compile Include="Api\CanStomp.cs" />
+    <Compile Include="Api\FinishWorkEvent.cs" />
+    <Compile Include="Api\NoMoreWorkSeedBedException.cs" />
+    <Compile Include="Forest\FinishWorkHandler.cs" />
+    <Compile Include="Forest\Plantation.cs" />
+    <Compile Include="Forest\SeedBed.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

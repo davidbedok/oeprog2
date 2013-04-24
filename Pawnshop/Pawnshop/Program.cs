@@ -7,11 +7,37 @@ using MoneyAndSecurities.Mortgage;
 using MoneyAndSecurities.Handlers;
 using MoneyAndSecurities.Exceptions;
 using MoneyAndSecurities.Institution;
+using MoneyAndSecurities.Demo;
 
 namespace MoneyAndSecurities
 {
     public class Program
     {
+
+        private static void testPlaceHolder()
+        {
+            Placeholder holder = new Placeholder();
+
+            try
+            {
+                Console.WriteLine("3 + 5 = " + holder.addSpecialNumbers(3, 5));
+                Console.WriteLine("3 + 6 = " + holder.addSpecialNumbers(3, 6));
+                Console.WriteLine("6 + 15 = " + holder.addSpecialNumbers(6, 15));
+            }
+            catch (NotSpecialNumberException e)
+            {
+                Console.WriteLine("error: " + e.Message + " invalidSpecialNumber: " + e.InvalidSpecialNumber);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Unknown error occured." + e.Message);
+            }
+            finally
+            {
+                Console.WriteLine("END.");
+            }
+        }
+
 
         /*
          * Ketfele "vagyon" letezik a modellben. Az egyik valamilyen valutaban ertendo penzmennyiseg, a masik pedig valamilyen ingosag (haz, auto, belyeg, stb.).
@@ -121,10 +147,14 @@ namespace MoneyAndSecurities
 
         private static void Main(string[] args)
         {
-            Program.testWealth();
-            Program.testAccount();
+          
+            //Program.testWealth();
+            
+            // Program.testAccount();
             Program.testPersonAccounts();
-            Program.testPawnshop();
+            //Program.testPawnshop();
+            
+            // Program.testPlaceHolder();
         }
     }
 }
