@@ -262,6 +262,8 @@ namespace SwedishStore
             Program.testStoreWithEquals();
             Program.testStoreListCompactSize();
             Program.testStoreUpgrade();
+
+            Console.ReadKey();
         }
     }
 }
