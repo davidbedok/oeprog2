@@ -8,70 +8,54 @@ namespace CompareDemo
     public class Program
     {
 
-        private static void testSimplePot(Random rand)
+        private static void sortUncomparablePotWithArraySort(Random rand)
         {
-            SimplePot[] simplePots = SimplePot.generatePots(rand, 10);
-            System.Console.WriteLine(SimplePot.printArray(simplePots));
-            Array.Sort(simplePots); // ArgumentException ! 
-            System.Console.WriteLine(SimplePot.printArray(simplePots));
+            UncomparablePot[] pots = UncomparablePot.generatePots(rand, 10);
+            System.Console.WriteLine(Arrays.toString("UncomparablePot after generation", pots));
+            Array.Sort(pots); // ArgumentException ! 
+            System.Console.WriteLine(Arrays.toString("UncomparablePot after sort", pots));
         }
 
-        private static void testPot(Random rand)
+        private static void sortPotWithArraySort(Random rand)
         {
-            Pot[] pots = Pot.generatePots(rand, 10);
-            System.Console.WriteLine(Pot.printArray(pots));
-            Program.minimumSelectionSortWithNoGenericCompareTo(pots);
-            // Array.Sort(pots);
-            System.Console.WriteLine(Pot.printArray(pots));
+            ComparablePot[] pots = ComparablePot.generatePots(rand, 10);
+            System.Console.WriteLine(Arrays.toString("ComparablePot after generation", pots));
+            Array.Sort(pots);
+            System.Console.WriteLine(Arrays.toString("ComparablePot after sort", pots));
         }
 
-        private static void minimumSelectionSortWithNoGenericCompareTo(IComparable[] data)
+        private static void sortPotWithCustomAlg(Random rand)
         {
-            if (data.Length > 0)
-            {
-                IComparable min;
-                int minPos;
-                for (int i = 0; i < data.Length - 1; i++)
-                {
-                    min = data[i];
-                    minPos = i;
-                    for (int j = i; j < data.Length; j++)
-                    {
-                        if (min.CompareTo(data[j]) > 0)
-                        {
-                            min = data[j];
-                            minPos = j;
-                        }
-                    }
-                    Program.switchItems(data, i, minPos);
-                }
-            }
+            ComparablePot[] pots = ComparablePot.generatePots(rand, 10);
+            System.Console.WriteLine(Arrays.toString("ComparablePot after generation", pots));
+            SortUtil.minimumSelectionSort(pots);
+            System.Console.WriteLine(Arrays.toString("ComparablePot after sort", pots));
         }
 
-        private static void switchItems(IComparable[] data, int aPos, int bPos)
+        private static void sortGenericComparablePotWithArraySort(Random rand)
         {
-            IComparable tmp = data[aPos];
-            data[aPos] = data[bPos];
-            data[bPos] = tmp;
+            GenericComparablePot[] pots = GenericComparablePot.generatePots(rand, 10);
+            System.Console.WriteLine(Arrays.toString("GenericComparablePot after generation", pots));
+            Array.Sort(pots);
+            System.Console.WriteLine(Arrays.toString("GenericComparablePot after sort", pots));
         }
 
-        private static void testGenericPot(Random rand){
-            GenericPot[] pots = GenericPot.generatePots(rand, 10);
-            System.Console.WriteLine(GenericPot.printArray(pots));
-            GenericPot.minimumSelectionSort(pots);
-            // GenericPot.minimumSelectionSortWithCompareTo(pots);
-            // Array.Sort(pots);
-            System.Console.WriteLine(GenericPot.printArray(pots));
+        private static void sortGenericComparablePotWithCustomAlg(Random rand){
+            GenericComparablePot[] pots = GenericComparablePot.generatePots(rand, 10);
+            System.Console.WriteLine(Arrays.toString("GenericComparablePot after generation", pots));
+            GenericComparablePot.minimumSelectionSort(pots);
+            System.Console.WriteLine(Arrays.toString("GenericComparablePot after sort", pots));
         }
 
         private static void Main(string[] args)
         {
             Random rand = new Random();
 
-            // Program.testSimplePot(rand);
-            // Program.testPot(rand);
-            // Program.testGenericPot(rand);
-            
+            // Program.sortUncomparablePotWithArraySort(rand);
+            // Program.sortPotWithArraySort(rand);
+            // Program.sortPotWithCustomAlg(rand);
+            // Program.sortGenericComparablePotWithArraySort(rand);
+            // Program.sortGenericComparablePotWithCustomAlg(rand);
         }
     }
 }
