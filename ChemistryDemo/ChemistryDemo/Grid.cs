@@ -13,7 +13,6 @@ namespace ChemistryDemo
         private const ConsoleColor FRAME_COLOR = ConsoleColor.White;
         private const int ANNIHILATION_PERCENT_LIMIT = 10;
 
-        private readonly List<Shape> shapes;
         private readonly ConsoleColor[,] map;
 
         private ExplosionEvent explosion;
@@ -35,7 +34,6 @@ namespace ChemistryDemo
 
         public Grid( int width, int height )
         {
-            this.shapes = new List<Shape>();
             this.map = new ConsoleColor[width,height];
             this.init();
         }
@@ -175,7 +173,7 @@ namespace ChemistryDemo
 
         private bool isFrame(int x, int y)
         {
-            return x == 0 || x == map.GetLength(0) + 1 || y == 0 || y == map.GetLength(1) + 1;
+            return x == 0 || x == this.MaxX + 1 || y == 0 || y == this.MaxY + 1;
         }
 
         public char getFieldChar(int x, int y)

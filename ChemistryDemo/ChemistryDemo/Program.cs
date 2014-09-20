@@ -50,7 +50,7 @@ namespace ChemistryDemo
                 while (true)
                 {
                     grid.tick(random);
-                    Console.Clear();
+                    // Console.Clear();
                     grid.print();
                     // Console.ReadKey();
                 }
