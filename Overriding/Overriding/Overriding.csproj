@@ -45,9 +45,9 @@
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
     <Compile Include="ChildEntity.cs" />
-    <Compile Include="DummyBase.cs" />
-    <Compile Include="DummyChild.cs" />
-    <Compile Include="DummyMiddle.cs" />
+    <Compile Include="Argument\Creature.cs" />
+    <Compile Include="Argument\Crocodile.cs" />
+    <Compile Include="Argument\Animal.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

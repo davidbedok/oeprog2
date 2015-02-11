@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Overriding.Argument;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,64 +8,57 @@ namespace Overriding
 {
     public class BaseEntity : Object
     {
-        public int publicFieldInBaseEntity;
-        protected int protectedFieldInBaseEntity;
-        private int privateFieldInBaseEntity;
+        public int publicField;
+        protected int protectedField;
+        private int privateField;
 
         public int PublicFieldInBaseEntity
         {
-            get { return publicFieldInBaseEntity; }
-            set { publicFieldInBaseEntity = value; }
+            get { return publicField; }
+            set { publicField = value; }
         }
 
         public int ProtectedFieldInBaseEntity
         {
-            get { return protectedFieldInBaseEntity; }
-            set { protectedFieldInBaseEntity = value; }
+            get { return protectedField; }
+            set { protectedField = value; }
         }
 
         public int PrivateFieldInBaseEntity
         {
-            get { return privateFieldInBaseEntity; }
-            set { privateFieldInBaseEntity = value; }
+            get { return privateField; }
+            set { privateField = value; }
         }
 
         public BaseEntity() : base()
         {
-            this.publicFieldInBaseEntity = 10;
-            this.protectedFieldInBaseEntity = 10;
-            this.privateFieldInBaseEntity = 10;
+            this.publicField = 10;
+            this.protectedField = 10;
+            this.privateField = 10;
         }
 
-        public void publicMethodInBaseEntity()
+        public void publicMethod()
         {
-            System.Console.WriteLine("publicMethodInBaseEntity");
+            Console.WriteLine("[BASE] Public Method");
         }
 
-        protected void protectedMethodInBaseEntity()
+        protected void protectedMethod()
         {
-            System.Console.WriteLine("protectedMethodInBaseEntity");
+            Console.WriteLine("[BASE] Protected Method");
         }
 
-        private void privateMethodInBaseEntity()
-        {
-            System.Console.WriteLine("privateMethodInBaseEntity");
+        private void privateMethod()
+        {    
+            Console.WriteLine("[BASE] Private Method");
         }
 
         // virtual or abstract method cannot be private
-        public virtual int publicOverrideTest(int param)
+        public virtual Animal publicDummyMethod(Animal animal)
         {
-            return param * 2;
-        }
-
-        protected virtual int protectedOverrideTest(int param)
-        {
-            return param * 2;
-        }
-
-        public virtual DummyMiddle overrideDummy(DummyMiddle param)
-        {
-            return param;
+            Console.WriteLine("[BASE] Public Dummy Method");
+            animal.doItCreature();
+            animal.doItAnimal();
+            return animal;
         }
 
     }

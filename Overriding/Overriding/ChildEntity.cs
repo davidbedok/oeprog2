@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Overriding.Argument;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,81 +9,75 @@ namespace Overriding
     public class ChildEntity : BaseEntity
     {
 
-        public string publicFieldInBaseEntity; // hiding (can be different type and visibility [access modifiers])
-        protected new int protectedFieldInBaseEntity; // intended hiding
-        private int privateFieldInBaseEntity;
+        public string publicField; // hiding (can be different type and visibility [access modifiers])
+        protected new int protectedField; // intended hiding
+        private int privateField;
 
         public string PublicFieldInChildEntity
         {
-            get { return publicFieldInBaseEntity; }
-            set { publicFieldInBaseEntity = value; }
+            get { return publicField; }
+            set { publicField = value; }
         }
 
         public int ProtectedFieldInChildEntity
         {
-            get { return protectedFieldInBaseEntity; }
-            set { protectedFieldInBaseEntity = value; }
+            get { return protectedField; }
+            set { protectedField = value; }
         }
 
         public int PrivateFieldInChildEntity
         {
-            get { return privateFieldInBaseEntity; }
-            set { privateFieldInBaseEntity = value; }
+            get { return privateField; }
+            set { privateField = value; }
         }
 
-        public ChildEntity()
+        public ChildEntity() : base()
         {
-            this.publicFieldInBaseEntity = "20";
-            this.protectedFieldInBaseEntity = 20;
-            this.privateFieldInBaseEntity = 20;
-            /*
-            base.publicFieldInBaseEntity = 15;
-            base.protectedFieldInBaseEntity = 15;
+            this.publicField = "20";
+            this.protectedField = 20;
+            this.privateField = 20;
+            
+            base.publicField = 15;
+            base.protectedField = 15;
             base.PrivateFieldInBaseEntity = 15;
-            */
         }
 
-        public void publicMethodInBaseEntity() // hiding
+        public void publicMethod() // hiding
         {
-            System.Console.WriteLine("Inside child: publicMethodInBaseEntity");
-            // base.publicMethodInBaseEntity();
+            Console.WriteLine("[CHILD] Public Method");
+            base.publicMethod();
         }
 
-        protected new void protectedMethodInBaseEntity() // intended hiding
+        protected new void protectedMethod() // intended hiding
         {
-            System.Console.WriteLine("Inside child: protectedMethodInBaseEntity");
+            Console.WriteLine("[CHILD] Protected Method");
         }
 
-        private void privateMethodInBaseEntity()
+        private void privateMethod()
         {
-            System.Console.WriteLine("Inside child: privateMethodInBaseEntity");
+            System.Console.WriteLine("[CHILD] Private Method");
         }
 
-        public override int publicOverrideTest(int param) // cannot change access modifiers
+        // cannot change access modifiers
+        public override Animal publicDummyMethod(Animal animal)
         {
-            return param * 2;
+            Console.WriteLine("[CHILD] Public Dummy Method");
+            animal.doItCreature();
+            animal.doItAnimal();
+            return animal;
         }
 
-        protected override int protectedOverrideTest(int param)
-        {
-            return param * 2;
-        }
+        // C# does not support return type covariance (workaround: call a hided method with 'covariance' return type)
+        // public override Crocodile publicDummyMethod(Animal animal)...
 
-        public override DummyMiddle overrideDummy(DummyMiddle param)
-        {
-            return param;
-        }
+        // return type contravariant is non-sense in implementation
+        // public override Creature publicDummyMethod(Animal animal)...
 
+        // C# does not support formal parameter type contravariance
+        // public override Animal publicDummyMethod(Creature animal)
 
-        public DummyMiddle overrideDummy(DummyBase param) // overloading!
-        { 
-            return (DummyMiddle)param;
-        }
-
-        public DummyMiddle overrideDummy(DummyChild param) // overloading!
-        {
-            return param;
-        }
+        // formal parameter type covariance is non-sense in implementation
+        // public override Animal publicDummyMethod(Crocodile animal)
 
     }
 }

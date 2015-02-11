@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Overriding.Argument;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,23 +10,22 @@ namespace Overriding
     {
         public static void Main(string[] args)
         {
-            ChildEntity child = new ChildEntity();
-            System.Console.WriteLine("PublicFieldInBaseEntity: " + child.PublicFieldInBaseEntity);
-            System.Console.WriteLine("PublicFieldInChildEntity: " + child.PublicFieldInChildEntity);
+            BaseEntity baseEntity = new BaseEntity();
+            BaseEntity childEntityA = new ChildEntity();
+            ChildEntity childEntityB = new ChildEntity();
 
-            System.Console.WriteLine("ProtectedFieldInBaseEntity: " + child.ProtectedFieldInBaseEntity);
-            System.Console.WriteLine("ProtectedFieldInChildEntity: " + child.ProtectedFieldInChildEntity);
+            baseEntity.publicMethod(); // base
+            childEntityA.publicMethod(); // base --> hiding
+            childEntityB.publicMethod(); // child --> overriding
 
-            System.Console.WriteLine("PrivateFieldInBaseEntity: " + child.PrivateFieldInBaseEntity);
-            System.Console.WriteLine("PrivateFieldInChildEntity: " + child.PrivateFieldInChildEntity);
+            Console.WriteLine("Overriding test A:");
+            Animal animal1 = childEntityA.publicDummyMethod(new Animal());
+            Console.WriteLine("Overriding test B:");
+            Animal animal2 = childEntityB.publicDummyMethod(new Animal());
 
-            child.publicMethodInBaseEntity();
-            System.Console.WriteLine("publicOverloadTest(42): " + child.publicOverrideTest(42));
-
-            child.overrideDummy(new DummyMiddle());
-            // child.overrideDummy(new DummyBase()); // invalid cast ('cos bad implementation..)
-            child.overrideDummy(new DummyChild());
-
+            // formal parameter type can be covariant (any Crocodile can be an Animal --> auto cast)
+            // return type can be contravariant in usage (any Animal can be Creature --> auto cast)
+            Creature creature = childEntityA.publicDummyMethod(new Crocodile());
         }
     }
 }
