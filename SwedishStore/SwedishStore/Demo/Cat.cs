@@ -9,29 +9,29 @@ namespace SwedishStore.Demo
     {
 
         private String nick;
-        private int numberOfMilk;
+        private int numberOfMilkCartons;
 
         public int NumberOfMilk
         {
-            get { return this.numberOfMilk; }
-            set { this.numberOfMilk = value; }
+            get { return this.numberOfMilkCartons; }
+            set { this.numberOfMilkCartons = value; }
         }
 
-        public Cat( String name, String nick )
+        public Cat(String name, String nick)
             : base(name)
         {
             this.nick = nick;
-            this.numberOfMilk = 1;
+            this.numberOfMilkCartons = 1;
         }
 
         public override String eat()
         {
-            return this + " is eating " + this.numberOfMilk + " milk(s)";
+            return this + " is eating " + this.numberOfMilkCartons + " milk carton(s).";
         }
 
         public override string ToString()
         {
-            return "Cat (name: "+this.Name + ")";
+            return "Cat (name: " + this.Name + ")";
         }
 
     }
