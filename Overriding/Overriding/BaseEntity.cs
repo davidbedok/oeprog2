@@ -30,7 +30,8 @@ namespace Overriding
             set { privateField = value; }
         }
 
-        public BaseEntity() : base()
+        public BaseEntity()
+            : base()
         {
             this.publicField = 10;
             this.protectedField = 10;
@@ -48,7 +49,7 @@ namespace Overriding
         }
 
         private void privateMethod()
-        {    
+        {
             Console.WriteLine("[BASE] Private Method");
         }
 
@@ -60,6 +61,13 @@ namespace Overriding
             animal.doItAnimal();
             return animal;
         }
+
+        public virtual Animal sample(Animal animal)
+        {
+            return animal;
+        }
+
+
 
     }
 }

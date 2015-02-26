@@ -26,6 +26,7 @@ namespace Overriding
             // formal parameter type can be covariant (any Crocodile can be an Animal --> auto cast)
             // return type can be contravariant in usage (any Animal can be Creature --> auto cast)
             Creature creature = childEntityA.publicDummyMethod(new Crocodile());
+
         }
     }
 }

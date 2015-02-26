@@ -31,12 +31,13 @@ namespace Overriding
             set { privateField = value; }
         }
 
-        public ChildEntity() : base()
+        public ChildEntity()
+            : base()
         {
             this.publicField = "20";
             this.protectedField = 20;
             this.privateField = 20;
-            
+
             base.publicField = 15;
             base.protectedField = 15;
             base.PrivateFieldInBaseEntity = 15;
@@ -78,6 +79,12 @@ namespace Overriding
 
         // formal parameter type covariance is non-sense in implementation
         // public override Animal publicDummyMethod(Crocodile animal)
+
+        // works in java:
+        // public override Crocodile sample(Animal animal)
+        // {
+        //    return new Crocodile();
+        // }
 
     }
 }
