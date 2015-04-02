@@ -208,6 +208,11 @@ namespace DynamicLists
             // Program.testCreateGenericClass();
             // Program.testExtendedAndCreateGenericClass();
             // Program.testMultiGenericClass();
+            
+            // IterationDemo.dictionaryIteration();
+            // IterationDemo.listIteration();
+
+            EqualsDemo.equalsSample3();
         }
     }
 }
