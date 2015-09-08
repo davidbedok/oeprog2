@@ -44,12 +44,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractHolder.cs" />
+    <Compile Include="Adaptor\DashboardFacade.cs" />
     <Compile Include="EndOfDataException.cs" />
     <Compile Include="PeopleMoney.cs" />
     <Compile Include="PeopleGravels.cs" />
+    <Compile Include="Persistence\DashboardService.cs" />
+    <Compile Include="Persistence\DashboardServiceImpl.cs" />
+    <Compile Include="Persistence\PersistenceException.cs" />
+    <Compile Include="Persistence\DuplicateKeyException.cs" />
+    <Compile Include="Persistence\UniqueConstraintException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExceptionBasics.Adaptor;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -84,9 +85,19 @@ namespace ExceptionBasics
         private static void Main(string[] args)
         {
             // Program.basics();
-            Program.testPeopleGravels();
+            // Program.testPeopleGravels();
             // Program.testPeopleMoney();
+            TestDashboard();
             System.Console.ReadKey();
+        }
+
+        private static void TestDashboard()
+        {
+            DashboardFacade facade = new DashboardFacade();
+            for (int i = 0; i < 100; i++)
+            {
+                Console.WriteLine(facade.GetUserInstruments());
+            }
         }
     }
 }
