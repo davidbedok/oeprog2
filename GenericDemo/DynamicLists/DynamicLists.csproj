@@ -43,12 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArrayListWrapper.cs" />
     <Compile Include="DemoArray.cs" />
     <Compile Include="DemoGenericList.cs" />
     <Compile Include="DemoList.cs" />
     <Compile Include="demo\TestA.cs" />
     <Compile Include="demo\AbstractTest.cs" />
     <Compile Include="demo\TestB.cs" />
+    <Compile Include="Domino.cs" />
     <Compile Include="entity\IdentifierEquals.cs" />
     <Compile Include="entity\DemoEntity.cs" />
     <Compile Include="entity\DummyEntity.cs" />
@@ -61,6 +63,13 @@
     <Compile Include="generic\GenericPrintArray.cs" />
     <Compile Include="generic\GenericCreateDemo.cs" />
     <Compile Include="generic\PrintArray.cs" />
+    <Compile Include="hidegenerics\PetHolder.cs" />
+    <Compile Include="hidegenerics\Application.cs" />
+    <Compile Include="hidegenerics\DogCosmetics.cs" />
+    <Compile Include="hidegenerics\Pet.cs" />
+    <Compile Include="hidegenerics\Cat.cs" />
+    <Compile Include="hidegenerics\Dog.cs" />
+    <Compile Include="hidegenerics\PetShop.cs" />
     <Compile Include="IDemoList.cs" />
     <Compile Include="IterationDemo.cs" />
     <Compile Include="Program.cs" />

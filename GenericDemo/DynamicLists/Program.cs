@@ -5,6 +5,8 @@ using System.Text;
 using DynamicLists.entity;
 using DynamicLists.generic;
 using DynamicLists.demo;
+using System.Collections;
+using DynamicLists.hidegenerics;
 
 namespace DynamicLists
 {
@@ -61,40 +63,41 @@ namespace DynamicLists
 
         #region Test Generic methods
 
-        public static void testGenericMethods() {
-		    TestEntity[] testEntities = new TestEntity[3];
-            testEntities[0] = new TestEntity(10,"alma");
-            testEntities[1] = new TestEntity(20,"korte");
-            testEntities[2] = new TestEntity(30,"szilva");
+        public static void testGenericMethods()
+        {
+            TestEntity[] testEntities = new TestEntity[3];
+            testEntities[0] = new TestEntity(10, "alma");
+            testEntities[1] = new TestEntity(20, "korte");
+            testEntities[2] = new TestEntity(30, "szilva");
 
             DemoEntity[] demoEntities = new DemoEntity[3];
-            demoEntities[0] = new DemoEntity(10.0,'a');
-            demoEntities[1] = new DemoEntity(20.0,'k');
-            demoEntities[2] = new DemoEntity(30.0,'s');
-            
+            demoEntities[0] = new DemoEntity(10.0, 'a');
+            demoEntities[1] = new DemoEntity(20.0, 'k');
+            demoEntities[2] = new DemoEntity(30.0, 's');
+
             DummyEntity[] dummyEntities = new DummyEntity[3];
-            dummyEntities[0] = new DummyEntity("10","alma");
-            dummyEntities[1] = new DummyEntity("20","korte");
-            dummyEntities[2] = new DummyEntity("30","szilva");
+            dummyEntities[0] = new DummyEntity("10", "alma");
+            dummyEntities[1] = new DummyEntity("20", "korte");
+            dummyEntities[2] = new DummyEntity("30", "szilva");
 
             System.Console.WriteLine("# Print arrays without generic method\n");
 
-		    System.Console.WriteLine("Array TestEntity contains:");
-		    PrintArray.printArray(testEntities);
-		    System.Console.WriteLine("\nArray DemoEntity contains:");
-		    PrintArray.printArray(demoEntities);
-		    System.Console.WriteLine("\nArray DummyEntity contains:");
-		    PrintArray.printArray(dummyEntities);
+            System.Console.WriteLine("Array TestEntity contains:");
+            PrintArray.printArray(testEntities);
+            System.Console.WriteLine("\nArray DemoEntity contains:");
+            PrintArray.printArray(demoEntities);
+            System.Console.WriteLine("\nArray DummyEntity contains:");
+            PrintArray.printArray(dummyEntities);
 
             System.Console.WriteLine("\n# Print arrays with generic method");
 
-		    System.Console.WriteLine("\nArray TestEntity contains:");
+            System.Console.WriteLine("\nArray TestEntity contains:");
             GenericPrintArray.printArray(testEntities);
-		    System.Console.WriteLine("\nArray DemoEntity contains:");
+            System.Console.WriteLine("\nArray DemoEntity contains:");
             GenericPrintArray.printArray(demoEntities);
             System.Console.WriteLine("\nArray DummyEntity contains:");
             GenericPrintArray.printArray(dummyEntities);
-	    }
+        }
 
         #endregion
 
@@ -104,7 +107,7 @@ namespace DynamicLists
         {
             System.Console.WriteLine("# Simple generic class");
 
-            GenericClass<TestEntity> genericTestClass = new GenericClass<TestEntity>(new TestEntity(10,"alma"));
+            GenericClass<TestEntity> genericTestClass = new GenericClass<TestEntity>(new TestEntity(10, "alma"));
             System.Console.WriteLine(genericTestClass.say());
 
             GenericClass<DemoEntity> genericDemoClass = new GenericClass<DemoEntity>(new DemoEntity(10.0, 'a'));
@@ -154,7 +157,7 @@ namespace DynamicLists
 
             GenericExtendedAndCreate<TestB> testExtCreateB = new GenericExtendedAndCreate<TestB>();
             // GenericExtendedAndCreate<AbstractTest> convertToAbstractTest = (GenericExtendedAndCreate<AbstractTest>)Convert.ChangeType(testExtCreateB, typeof(GenericExtendedAndCreate<AbstractTest>));
-            
+
             testExtCreateB.print();
         }
 
@@ -165,10 +168,10 @@ namespace DynamicLists
         public static void testMultiGenericClass()
         {
             System.Console.WriteLine("\n# Multi generic class");
-            
+
             GenericMultiClass<int, string> multiClass1 = new GenericMultiClass<int, string>(10, "alma");
             System.Console.WriteLine(multiClass1);
-            
+
             GenericMultiClass<double, char> multiClass2 = new GenericMultiClass<double, char>(10.0, 'a');
             System.Console.WriteLine(multiClass2);
 
@@ -187,7 +190,7 @@ namespace DynamicLists
 
         #endregion
 
-        #region Generic Method with Generic class param 
+        #region Generic Method with Generic class param
 
         public static void callGenericParam<E, K>(GenericMultiClass<E, K> param)
         {
@@ -208,11 +211,74 @@ namespace DynamicLists
             // Program.testCreateGenericClass();
             // Program.testExtendedAndCreateGenericClass();
             // Program.testMultiGenericClass();
-            
+
             // IterationDemo.dictionaryIteration();
             // IterationDemo.listIteration();
 
-            EqualsDemo.equalsSample3();
+            // EqualsDemo.equalsSample3();
+
+            // testDomino();
+            // testArrayList();
+
+            // Application.TestShop();
+            Application.TestCosmetics();
         }
+
+        private static void testDomino()
+        {
+            Domino head = new Domino(1);
+            head.Next = new Domino(1);
+            head.Next.Next = new Domino(2);
+            head.Next.Next.Next = new Domino(3);
+            Console.WriteLine(head);
+
+            Domino tail = head.Next.Next.Next;
+            Domino domino = new Domino(5);
+            tail.Next = domino;
+            Console.WriteLine(head);
+
+            head.Next.Next.Insert(42);
+            Console.WriteLine(head);
+
+            head.DeleteByIndex(2);
+            // head.Next.DeleteNext();
+            Console.WriteLine(head);
+
+            Console.WriteLine("# Find");
+            Console.WriteLine(head.RelativeFind(3));
+            Console.WriteLine(head.Find(3));
+
+            Domino list = new Domino(1);
+            list.Add(1).Add(2).Add(3).Add(5).Add(8).Add(13);
+            Console.WriteLine(list);
+
+            Tuple<int, String> pair = new Tuple<int, String>(42, "Hello");
+
+        }
+
+        private static void testArrayList()
+        {
+            ArrayList list = new ArrayList();
+            list.Add(42);
+            list.Add("Lorem");
+
+            foreach (Object element in list)
+            {
+                Console.WriteLine(element);
+            }
+
+            IEnumerator iterator = list.GetEnumerator();
+            while (iterator.MoveNext())
+            {
+                Console.WriteLine(iterator.Current);
+            }
+
+            ArrayListWrapper wrapper = new ArrayListWrapper(10);
+            wrapper.Add("Lorem");
+            wrapper.Add("Ipsum");
+            wrapper.Add("Dolor");
+            Console.WriteLine(wrapper.IndexOf("Ipsum"));
+        }
+
     }
 }
