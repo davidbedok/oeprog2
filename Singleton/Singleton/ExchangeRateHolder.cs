@@ -9,6 +9,8 @@ namespace Singleton
     public class ExchangeRateHolder
     {
 
+        private static readonly Object MONITOR = new Object();
+
         private static ExchangeRateHolder INSTANCE;
 
         private readonly Dictionary<Currency, Double> rates;
@@ -46,6 +48,21 @@ namespace Singleton
             if (INSTANCE == null)
             {
                 INSTANCE = new ExchangeRateHolder();
+            }
+            return INSTANCE;
+        }
+
+        public static ExchangeRateHolder GetInstanceThreadSafe()
+        {
+            if (INSTANCE == null)
+            {
+                lock (MONITOR)
+                {
+                    if (INSTANCE == null)
+                    {
+                        INSTANCE = new ExchangeRateHolder();
+                    }
+                }
             }
             return INSTANCE;
         }

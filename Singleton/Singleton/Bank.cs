@@ -44,6 +44,10 @@ namespace Singleton
                     break;
                 }
             }
+            if (result == null)
+            {
+                throw new UnknownAccountExceotion(number);
+            }
             return result;
         }
 
