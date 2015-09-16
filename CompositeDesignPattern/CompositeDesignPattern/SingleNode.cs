@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompositeDesignPattern
 {
-    public class SingleNode : HtmlElement
+    public class SingleNode : Node
     {
 
         private readonly String value;

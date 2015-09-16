@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CompositeDesignPattern
 {
-    public abstract class HtmlElement
+    public abstract class Node
     {
 
         private readonly String name;
@@ -21,21 +21,16 @@ namespace CompositeDesignPattern
             get { return "</" + this.name + ">"; }
         }
 
-        public HtmlElement(String name)
+        public Node(String name)
         {
             this.name = name;
-        }
-
-        public String GetValue()
-        {
-            return this.Begin + this.GetContent() + this.End;
         }
 
         protected abstract String GetContent();
 
         public override String ToString()
         {
-            return this.GetValue();
+            return this.Begin + this.GetContent() + this.End;
         }
 
     }

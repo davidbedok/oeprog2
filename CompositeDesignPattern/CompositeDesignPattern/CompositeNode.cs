@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace CompositeDesignPattern
 {
-    public class ParentNode : HtmlElement
+    public class CompositeNode : Node
     {
 
-        private readonly List<HtmlElement> children;
+        private readonly List<Node> children;
 
-        public ParentNode(String name)
+        public CompositeNode(String name)
             : base(name)
         {
-            this.children = new List<HtmlElement>();
+            this.children = new List<Node>();
         }
 
-        public ParentNode Append(HtmlElement child)
+        public CompositeNode Append(Node child)
         {
             this.children.Add(child);
             return this;
@@ -27,9 +27,9 @@ namespace CompositeDesignPattern
         {
             StringBuilder builder = new StringBuilder();
             builder.AppendLine();
-            foreach (HtmlElement element in this.children)
+            foreach (Node element in this.children)
             {
-                builder.AppendLine(element.GetValue());
+                builder.AppendLine(element.ToString());
             }
             return builder.ToString();
         }
